@@ -7,7 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 .enablePlugins(DockerPlugin)
   .settings(
     Universal / javaOptions ++= Seq("-Dpidfile.path=/dev/null"),
-    dockerBaseImage := "eclipse-temurin:21.0.3_9-jre-jammy"
+    dockerBaseImage := "eclipse-temurin:21.0.3_9-jre-jammy",
     dockerExposedPorts ++= Seq(9000),
     dockerEnvVars := Map("TZ" -> "Asia/Tokyo"),
     // dockerEntrypoint := Seq("bin/entrypoint.sh"),
