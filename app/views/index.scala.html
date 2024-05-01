@@ -6,7 +6,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>クイズアプリ</title>
+    <title>校長かひろゆきかクイズ</title>
     <!-- Bootstrap CSSの読み込み -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- 独自のCSSファイルもここで読み込む -->
@@ -14,11 +14,11 @@
 <body>
     <div class="container">
         <h1>校長かひろゆきかクイズ</h1>
-        @for(question <- quiz.questions) {
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@question.title</h5>
-                    <form action="/submit" method="post">
+        <form action="/submit" method="post">
+            @for(question <- quiz.questions) {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@question.title</h5>
                         @for((option, index) <- question.options.zipWithIndex) {
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="@question.id" id="@question.id-@index" value="@index">
@@ -27,11 +27,11 @@
                                 </label>
                             </div>
                         }
-                        <button type="submit" class="btn btn-primary">回答する</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+            <button type="submit" class="btn btn-primary">回答する</button>
+        </form>
     </div>
     <!-- Bootstrap 依存のJavaScriptファイル -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

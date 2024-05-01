@@ -9,7 +9,12 @@
 
 [Scala compatibility table](https://docs.scala-lang.org/overviews/jdk-compatibility/overview.html)
 
+## Deploy
 ```
 $ sbt Docker/publishLocal
 $ docker run -it -p 9000:9000 scala-miniapp:1.0-SNAPSHOT
+
+$ cd target/docker/stage/Dockerfile
+$ gcloud builds submit --tag gcr.io/scala-miniapp/gcloud-one-scala
+$ gcloud run deploy --image gcr.io/scala-miniapp/gcloud-one-scala --platform managed --allow-unauthenticated --port 9000
 ```
