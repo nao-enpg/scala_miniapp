@@ -1,0 +1,39 @@
+@(results: Seq[(Question, Boolean)])(implicit request: RequestHeader)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>校長かひろゆきか当てるクイズ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>結果</h1>
+        @for((question, isCorrect) <- results) {
+            <div class="card" style="background-color: @{if(isCorrect) "#d4edda" else "#f8d7da"};">
+                <div class="card-body">
+                    <h5 class="card-title">@question.title</h5>
+                    <p class="card-text">@if(isCorrect) {正解} else {不正解}</p>
+                </div>
+            </div>
+        }
+        <div>@results.count(_._2)問正解ですねー</div>
+        <div>
+            <a id="tweetButton" class="btn btn-info" target="_blank">Xにシェア</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const correctCount = @results.count(_._2);
+            const tweetText = encodeURIComponent(`${correctCount}問正解ですねー\n#校長かひろゆきか当てるクイズ #ミニアプリweek\nhttps://scala-miniapp-z6gdva4rxq-an.a.run.app/`);
+            const tweetButton = document.getElementById('tweetButton');
+            tweetButton.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+        });
+        </script>
+
+</body>
+</html>

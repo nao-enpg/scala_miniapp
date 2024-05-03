@@ -1,20 +1,24 @@
 @import models.Quiz
+@import play.api.data.Form
+@import play.filters.csrf.CSRF
+@import play.filters.csrf.CSRF.Token
 
-@(quiz: Quiz)
+@(quiz: Quiz)(implicit request: RequestHeader)
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>校長かひろゆきかクイズ</title>
-    <!-- Bootstrap CSSの読み込み -->
+    <title>校長かひろゆきか当てるクイズ</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 独自のCSSファイルもここで読み込む -->
 </head>
 <body>
     <div class="container">
-        <h1>校長かひろゆきかクイズ</h1>
-        <form action="/submit" method="post">
+        <h1>校長かひろゆきか当てるクイズ</h1>
+        <br>
+        <h2>（きこえますか...こどもごごろ感じるままに選ぶのです...）</h2>
+        @helper.form(action = routes.HomeController.submit) {
+            @helper.CSRF.formField
             @for(question <- quiz.questions) {
                 <div class="card">
                     <div class="card-body">
@@ -31,9 +35,8 @@
                 </div>
             }
             <button type="submit" class="btn btn-primary">回答する</button>
-        </form>
+        }
     </div>
-    <!-- Bootstrap 依存のJavaScriptファイル -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
