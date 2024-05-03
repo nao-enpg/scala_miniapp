@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>結果</h1>
+        <h1 class="text-center">こたえあわせ</h1>
         @for((question, isCorrect) <- results) {
             <div class="card" style="background-color: @{if(isCorrect) "#d4edda" else "#f8d7da"};">
                 <div class="card-body">
@@ -18,9 +18,11 @@
                 </div>
             </div>
         }
-        <div>@results.count(_._2)問正解ですねー</div>
-        <div>
-            <a id="tweetButton" class="btn btn-info" target="_blank">Xにシェア</a>
+        <br>
+        <div class="text-center">@results.count(_._2)問正解ですねー</div>
+        <br>
+        <div class="text-center">
+            <a id="tweetButton" class="btn btn-dark" target="_blank">Xにシェア</a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

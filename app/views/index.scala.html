@@ -14,9 +14,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>校長かひろゆきか当てるクイズ</h1>
+        <h1 class="text-center" style="background-color: #ffc926;">校長かひろゆきか当てるクイズ</h1>
         <br>
-        <h2>（きこえますか...こどもごごろ感じるままに選ぶのです...）</h2>
+        <h4 class="text-center">（きこえますか...こどもごごろ感じるままに選ぶのです...）</h4>
         @helper.form(action = routes.HomeController.submit) {
             @helper.CSRF.formField
             @for(question <- quiz.questions) {
@@ -34,7 +34,9 @@
                     </div>
                 </div>
             }
-            <button type="submit" class="btn btn-primary">回答する</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block">回答する</button>
+            </div>
         }
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
